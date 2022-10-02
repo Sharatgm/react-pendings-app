@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { oneOf } from "prop-types";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { usePendings } from "../../providers/PendingsProvider";
@@ -44,8 +44,12 @@ const Pending = ({ id, description, priority, dueDate }) => {
 
 Pending.propTypes = {
   description: PropTypes.string.isRequired,
-  priority: oneOf([PRIORITIES.HIGH, PRIORITIES.LOW, PRIORITIES.MEDIUM])
-    .isRequired,
+  priority: PropTypes.oneOf([
+    PRIORITIES.HIGH,
+    PRIORITIES.LOW,
+    PRIORITIES.MEDIUM,
+  ]).isRequired,
+  status: PropTypes.oneOf([STATUSES.ACTIVE, STATUSES.DELETED, STATUSES.DONE]),
 };
 
 export default Pending;

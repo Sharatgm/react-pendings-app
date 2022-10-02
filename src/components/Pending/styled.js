@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled, { css } from "styled-components";
 import { PRIORITIES } from "../../utils/constants";
 
@@ -55,7 +54,7 @@ const DoneButton = styled.button`
 const DeleteButton = styled.button`
   height: 20px;
   width: 22px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
   background-color: #ffffff;
   cursor: pointer;
