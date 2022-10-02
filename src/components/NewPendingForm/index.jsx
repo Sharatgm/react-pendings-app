@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import DatePicker from "react-datepicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import "react-datepicker/dist/react-datepicker.css";
 import { usePendings } from "../../providers/PendingsProvider";
 import * as Styled from "./styled";
 import { PRIORITIES, STATUSES } from "../../utils/constants";
@@ -17,12 +19,14 @@ const NewPendingForm = ({ displayForm, onFormClose }) => {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [priority, setPriority] = useState("");
+  const [dueDate, setDueDate] = useState(new Date());
   const [formErrors, setFormErrors] = useState({});
 
   const clearForm = () => {
     setDescription("");
     setStatus("");
     setPriority("");
+    setDueDate(new Date());
     setFormErrors({});
     setError(false);
   };
@@ -58,7 +62,7 @@ const NewPendingForm = ({ displayForm, onFormClose }) => {
     e.preventDefault();
     const isValidForm = validateForm();
     if (isValidForm) {
-      addPending({ status, description, priority });
+      addPending({ status, description, priority, dueDate });
       closeFormModal();
     } else {
       setError(true);
@@ -163,6 +167,13 @@ const NewPendingForm = ({ displayForm, onFormClose }) => {
           {formErrors.priority && (
             <Styled.ErrorMessage>{formErrors.priority}</Styled.ErrorMessage>
           )}
+
+          {/* Due Date */}
+          <Styled.Label>Due Date</Styled.Label>
+          <DatePicker
+            selected={dueDate}
+            onChange={(date) => setDueDate(date)}
+          />
 
           <Styled.FormButton type="submit">Save pending</Styled.FormButton>
         </Styled.FormContainer>

@@ -5,11 +5,14 @@ import * as Styled from "./styled";
 
 const App = () => {
   return (
-    <Styled.AppContainer>
-      <PendingsProvider>
-        <Dashboard />
-      </PendingsProvider>
-    </Styled.AppContainer>
+    <>
+      <Styled.Header>My Pendings</Styled.Header>
+      <Styled.AppContainer>
+        <PendingsProvider>
+          <Dashboard />
+        </PendingsProvider>
+      </Styled.AppContainer>
+    </>
   );
 };
 

@@ -10,7 +10,8 @@ const Container = styled.div`
   width: 200px;
   padding: 15px;
   margin: 20px;
-  background-color: #ffffff;
+  background-color: ${({ dueDateSoon }) =>
+    dueDateSoon ? "#FFD6D6" : "#ffffff"};
   -webkit-box-shadow: 0px 0px 18px -2px rgba(168, 168, 168, 1);
   -moz-box-shadow: 0px 0px 18px -2px rgba(168, 168, 168, 1);
   box-shadow: 0px 0px 18px -2px rgba(168, 168, 168, 1);
@@ -56,10 +57,12 @@ const DeleteButton = styled.button`
   width: 22px;
   border-radius: 5px;
   border: none;
-  background-color: #ffffff;
+  background-color: ${({ dueDateSoon }) =>
+    dueDateSoon ? "#FFD6D6" : "#ffffff"};
   cursor: pointer;
   :active {
-    background-color: #edefed;
+    background-color: ${({ dueDateSoon }) =>
+      dueDateSoon ? "#F4C2C2" : "#edefed"};
   }
 `;
 

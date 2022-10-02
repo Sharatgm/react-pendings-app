@@ -5,7 +5,6 @@ const PendingsContext = createContext(null);
 
 const PendingsProvider = ({ children }) => {
   const [pendings, setPendings] = useState(defaultPendings);
-  console.log({ pendings });
 
   const updatePending = ({ id, attribute, value }) => {
     setPendings((previousPendings) => {
@@ -26,7 +25,7 @@ const PendingsProvider = ({ children }) => {
     priority = "",
   }) => {
     setPendings((previousPendings) => {
-      const newId = Object.keys(previousPendings).pop() + 1;
+      const newId = Object.keys(pendings).pop() + 1;
       const newPendings = {
         ...previousPendings,
         [newId]: {

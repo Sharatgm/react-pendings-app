@@ -16,20 +16,9 @@ const Dashboard = () => {
       (key) => pendings[key].status === STATUSES.DONE
     );
 
-    const active = Object.keys(pendings).reduce((previous, key) => {
-      const { status, priority, description, dueDate } = pendings[key];
-      if (status === STATUSES.ACTIVE)
-        previous.push(
-          <Pending
-            key={key}
-            id={key}
-            description={description}
-            priority={priority}
-            dueDate={dueDate}
-          />
-        );
-      return previous;
-    }, []);
+    let active = Object.keys(pendings)
+      .sort((keyA, keyB) => pendings[keyA].dueDate - pendings[keyB].dueDate)
+      .filter((key) => pendings[key].status === STATUSES.ACTIVE);
 
     setDoneCount(done.length);
     setActivePendings(active);
@@ -48,7 +37,19 @@ const Dashboard = () => {
       <Styled.Dashboard>
         <NewPendingForm displayForm={showForm} onFormClose={onFormClose} />
         <Styled.AddButton type="button" onClick={displayForm} />
-        {activePendings}
+        {activePendings.reduce((previous, key) => {
+          const { priority, description, dueDate } = pendings[key];
+          previous.push(
+            <Pending
+              key={key}
+              id={key}
+              description={description}
+              priority={priority}
+              dueDate={dueDate}
+            />
+          );
+          return previous;
+        }, [])}
       </Styled.Dashboard>
       Active: {activePendings.length} &nbsp; Done: {doneCount}
     </>

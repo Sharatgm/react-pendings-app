@@ -10,7 +10,6 @@ const Dashboard = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 16px;
-  max-width: 100vh;
   overflow-y: scroll;
   margin-bottom: 10px;
 `;

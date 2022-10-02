@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +8,17 @@ import { PRIORITIES, STATUSES } from "../../utils/constants";
 
 const Pending = ({ id, description, priority, dueDate }) => {
   const { updatePending } = usePendings();
+  const [dueDateSoon, setDueDateSoon] = useState(false);
+  useEffect(() => {
+    if (dueDate) {
+      const now = new Date();
+      const msBetweenDates = Math.abs(dueDate.getTime() - now.getTime());
+      const hours = msBetweenDates / (60 * 60 * 1000);
+      if (hours <= 48) {
+        setDueDateSoon(true);
+      }
+    }
+  }, [dueDate]);
 
   const markAsDone = () => {
     updatePending({ id, attribute: "status", value: STATUSES.DONE });
@@ -18,7 +29,7 @@ const Pending = ({ id, description, priority, dueDate }) => {
   };
 
   return (
-    <Styled.Container>
+    <Styled.Container dueDateSoon={dueDateSoon}>
       <Styled.TopBar>
         <Styled.Status>
           <Styled.PrioritySpan priority={priority}>
@@ -26,9 +37,11 @@ const Pending = ({ id, description, priority, dueDate }) => {
             {priority}
           </Styled.PrioritySpan>
           <br />
-          Due date: {dueDate}
+          Due date: {`${dueDate.getDate()}`.padStart(2, "0")}-
+          {`${dueDate.getMonth() + 1}`.padStart(2, "0")}-
+          {`${dueDate.getFullYear()}`.substring(2)}
         </Styled.Status>
-        <Styled.DeleteButton>
+        <Styled.DeleteButton dueDateSoon={dueDateSoon}>
           <FontAwesomeIcon icon={faXmark} size="lg" onClick={deletePending} />
         </Styled.DeleteButton>
       </Styled.TopBar>
