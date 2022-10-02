@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.2dcff3e9.css",
-    "main.js": "/static/js/main.22904c32.js",
-    "index.html": "/index.html",
-    "main.2dcff3e9.css.map": "/static/css/main.2dcff3e9.css.map",
-    "main.22904c32.js.map": "/static/js/main.22904c32.js.map"
+    "main.css": "/react-pendings-app/static/css/main.2dcff3e9.css",
+    "main.js": "/react-pendings-app/static/js/main.7fbd03cf.js",
+    "index.html": "/react-pendings-app/index.html",
+    "main.2dcff3e9.css.map": "/react-pendings-app/static/css/main.2dcff3e9.css.map",
+    "main.7fbd03cf.js.map": "/react-pendings-app/static/js/main.7fbd03cf.js.map"
   },
   "entrypoints": [
     "static/css/main.2dcff3e9.css",
-    "static/js/main.22904c32.js"
+    "static/js/main.7fbd03cf.js"
   ]
 }
